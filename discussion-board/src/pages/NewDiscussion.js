@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NewDiscussion = () => {
     const [title, setTitle] = useState('');
@@ -23,98 +24,42 @@ const NewDiscussion = () => {
         navigate('/discussions');
     };
 
-    // Define styles
-    const styles = {
-        container: {
-            maxWidth: '600px',
-            margin: '40px auto',
-            padding: '25px',
-            border: '1px solid #ccc',
-            borderRadius: '10px',
-            boxShadow: '0 5px 10px rgba(0, 0, 0, 0.15)',
-            backgroundColor: '#f4f4f4',
-        },
-        heading: {
-            textAlign: 'center',
-            color: '#444',
-            marginBottom: '25px',
-        },
-        form: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-        },
-        label: {
-            fontWeight: 'bold',
-            color: '#666',
-        },
-        input: {
-            width: '100%',
-            padding: '12px',
-            border: '1px solid #bbb',
-            borderRadius: '5px',
-            fontSize: '16px',
-            backgroundColor: '#fff',
-        },
-        textarea: {
-            width: '100%',
-            padding: '12px',
-            border: '1px solid #bbb',
-            borderRadius: '5px',
-            fontSize: '16px',
-            backgroundColor: '#fff',
-            resize: 'vertical',
-            minHeight: '120px',
-        },
-        button: {
-            padding: '12px 24px',
-            border: 'none',
-            borderRadius: '5px',
-            backgroundColor: '#0056b3',
-            color: '#fff',
-            fontSize: '16px',
-            cursor: 'pointer',
-            transition: 'background-color 0.3s ease',
-        },
-        buttonHover: {
-            backgroundColor: '#004080',
-        },
-    };
-
     return (
-        <div style={styles.container}>
-            <h1 style={styles.heading}>Post a New Discussion</h1>
-            <form onSubmit={handleSubmit} style={styles.form}>
-                <div>
-                    <label htmlFor="title" style={styles.label}>Title:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                        style={styles.input}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content" style={styles.label}>Content:</label>
-                    <textarea
-                        id="content"
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                        required
-                        style={styles.textarea}
-                    />
-                </div>
-                <button
-                    type="submit"
-                    style={styles.button}
-                    onMouseOver={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                    onMouseOut={(e) => (e.target.style.backgroundColor = styles.button.backgroundColor)}
-                >
-                    Post Discussion
-                </button>
-            </form>
+        <div className="container mt-5">
+            <div className="card shadow p-4">
+                <h1 className="text-center mb-4">Post a New Discussion</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="title" className="form-label">
+                            Title:
+                        </label>
+                        <input
+                            type="text"
+                            id="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            className="form-control"
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="content" className="form-label">
+                            Content:
+                        </label>
+                        <textarea
+                            id="content"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            className="form-control"
+                            rows="5"
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-success w-100 text-uppercase fw-bold text-danger">
+                        Post Discussion
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
