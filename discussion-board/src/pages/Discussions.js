@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from '../component/Navbar';
 
 const Discussions = () => {
     const [discussions, setDiscussions] = useState([]);
@@ -33,6 +34,8 @@ const Discussions = () => {
     };
 
     return (
+        <>
+        <Navbar/>
         <div className="container mt-5 p-4 border rounded shadow bg-light">
             <h1 className="text-center text-dark mb-4">Discussions</h1>
             <div className="text-center mb-4">
@@ -64,6 +67,8 @@ const Discussions = () => {
                 ))}
             </ul>
         </div>
+        </>
+
     );
 };
 
