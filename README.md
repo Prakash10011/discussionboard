@@ -1,41 +1,11 @@
-Overview
-This is a simple discussion board built with React and Bootstrap. Users can post new discussions, view existing discussions, and like or dislike them. Discussions are stored in localStorage to persist data.
+### Credit  
+This project was done with the help of ChatGPT. I used ChatGPT to create some parts of the project, but the styles are mine. I added Bootstrap to style the project according to my needs.  
 
-Features
-Post new discussions
-View existing discussions
-Like and dislike discussions
-Data persistence using localStorage
-Installation
-Clone the repository:
+### Project Structure  
+**Directories:**  
+- **Pages**  
+  - This directory contains pages that I have used, which are the discussion list and a form to create a new one.  
+- **Components**  
+  - This directory contains reusable components.  
 
-git clone https://github.com/your-repo/react-discussion-board.git
-Navigate to the project directory:
-
-cd react-discussion-board
-Install dependencies:
-
-npm install
-Usage
-Running the Project
-To start the development server, run:
-
-npm start
-Then open http://localhost:3000 in your browser.
-
-Project Structure
-react-discussion-board/
-│-- src/
-│   │-- components/
-│   │   │-- Navbar.js
-│   │-- pages/
-│   │   │-- Discussions.js
-│   │   │-- NewDiscussion.js
-│   │-- App.js
-│-- public/
-│-- package.json
-│-- README.md
-Dependencies
-React
-React Router DOM
-Bootstrap
+I have imported Bootstrap in `index.js`.  

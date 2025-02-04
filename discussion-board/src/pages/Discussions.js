@@ -2,17 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../component/Navbar';
+import React from 'react';
 
 const Discussions = () => {
+    // state to manage discussions page 
     const [discussions, setDiscussions] = useState([]);
+    // state to manage like and dislike state
     const [likes, setLikes] = useState({});
     const [dislikes, setDislikes] = useState({});
 
     // Load discussions, likes, and dislikes from localStorage
     useEffect(() => {
+        // to store the data in localstorage
         const storedDiscussions = JSON.parse(localStorage.getItem('discussions')) || [];
         setDiscussions(storedDiscussions);
 
+        //to store likes
         const storedLikes = JSON.parse(localStorage.getItem('likes')) || {};
         const storedDislikes = JSON.parse(localStorage.getItem('dislikes')) || {};
         setLikes(storedLikes);
@@ -33,6 +38,7 @@ const Discussions = () => {
         localStorage.setItem('dislikes', JSON.stringify(updatedDislikes));
     };
 
+    // this is the xml structure for discussion page
     return (
         <>
         <Navbar/>
@@ -72,4 +78,64 @@ const Discussions = () => {
     );
 };
 
-export default Discussions;
+export default Discussions;export const NewDiscussion = () => {
+    // to handle state in newdiscussion page
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const storedDiscussions = JSON.parse(localStorage.getItem('discussions')) || [];
+
+        const newDiscussion = {
+            id: Date.now(),
+            title,
+            content,
+        };
+
+        const updatedDiscussions = [...storedDiscussions, newDiscussion];
+        localStorage.setItem('discussions', JSON.stringify(updatedDiscussions));
+
+        navigate('/discussions');
+    };
+
+    return (
+        <div className="container mt-5">
+            <div className="card shadow p-4">
+                <h1 className="text-center mb-4">Post a New Discussion</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="title" className="form-label">
+                            Title:
+                        </label>
+                        <input
+                            type="text"
+                            id="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            className="form-control"
+                            required />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="content" className="form-label">
+                            Content:
+                        </label>
+                        <textarea
+                            id="content"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            className="form-control"
+                            rows="5"
+                            required />
+                    </div>
+                    <button type="submit" className="btn btn-success w-100 text-uppercase fw-bold text-danger">
+                        Post Discussion
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
+};
+
